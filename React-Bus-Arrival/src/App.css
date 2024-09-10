@@ -1,0 +1,18 @@
+#root, body {
+  margin: 0;
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
