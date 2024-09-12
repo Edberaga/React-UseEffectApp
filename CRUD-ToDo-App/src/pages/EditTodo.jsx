@@ -1,30 +1,35 @@
 import { useContext, useState } from 'react';
 import { Form, Container, Button } from 'react-bootstrap';
 import { TodoContext } from '../context/TodoContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const AddNote = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState(false);
-
+const EditTodo = () => {
+  const id = parseInt(useParams().id);
   const setTodos = useContext(TodoContext).setTodos;
   const todos = useContext(TodoContext).todos;
+  const currentTodo = todos.filter((todo) => todo.id === id)[0];
+
+  const [title, setTitle] = useState(currentTodo.title);
+  const [description, setDescription] = useState(currentTodo.description);
+  const [completed, setCompleted] = useState(currentTodo.completed);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTodos([
-        ...todos, 
-        { id: Date.now(), title, description, completed },
-    ]);
-    navigate("/");
+  function updateTodo(event) {
+    event.preventDefault();
+    const updatedTodos = todos.map((todo) => {
+        if(todo.id === id) {
+            return { id, title, description, completed};
+        }
+        return todo;
+    });
+    setTodos(updatedTodos);
+    navigate('/');
   }
 
   return (
-  <Container>
+    <Container>
     <h1 className='mt-5'>Add Todo</h1>
-    <Form onSubmit={(e) => { handleSubmit(e) }}>
+    <Form onSubmit={ updateTodo }>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -60,4 +65,4 @@ const AddNote = () => {
   )
 }
 
-export default AddNote
+export default EditTodo
