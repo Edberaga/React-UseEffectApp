@@ -16,3 +16,19 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+
+.bus-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 25px;
+  border: 1px solid black;
+  border-radius: 25px;
+  min-width: 250px;
+}
+
+.bus-display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}

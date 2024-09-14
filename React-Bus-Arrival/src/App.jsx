@@ -4,16 +4,17 @@ import './App.css'
 
 function BusService({ busArrivalData }) {
   return (
-  <ul>
+  <section className='bus-display'>
     {busArrivalData.services.map(service => {
       const result = service.next_bus_mins < 0 ? "Arrived" : `${service.next_bus_mins} minutes`;
       return (
-        <li key={service.bus_no}>
-          Bus {service.bus_no}: {result}
-        </li>
+        <div key={service.bus_no} className='bus-list'>
+          <p>Bus {service.bus_no}:</p>
+          <p>{result}</p> 
+        </div>
       );
     })}
-  </ul>
+  </section>
   )
 }
 
