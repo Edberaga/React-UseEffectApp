@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { TodoContext } from './context/TodoContext';
 
 import Header from './components/Header';
 import Home from './pages/Home';
+import Note from './pages/Note';
+import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
 import AddTodo from './pages/AddTodo';
 import EditTodo from './pages/EditTodo';
+
 import useLocalStorage from 'use-local-storage';
-import { TodoContext } from './context/TodoContext';
 
 function App() {
   const [todos, setTodos] = useLocalStorage("todos", []);
@@ -18,8 +21,10 @@ function App() {
     <main>
       <Header/>
       <Routes>
-        <Route path='/'>
-          <Route index element={<Home/>} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/note'>
+          <Route index element={<Note/>} />
           <Route path='add-note' element={<AddTodo/>} />
           <Route path='todo/:id' element={<EditTodo/>} />
           <Route path='*' element={<ErrorPage/>} />
