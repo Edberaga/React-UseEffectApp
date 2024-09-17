@@ -27,7 +27,7 @@ const EditTodo = () => {
   }
 
   return (
-    <Container>
+  <Container>
     <h1 className='mt-5'>Add Todo</h1>
     <Form onSubmit={ updateTodo }>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
