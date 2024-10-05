@@ -13,7 +13,8 @@ const Login = () => {
     const isCorrectUseremail = useremail === "edbertjonnathan@gmail.com";
     const isCorrectPassword = password === "123456";
     if(isCorrectUseremail && isCorrectPassword ) {
-        auth.setToken("1234")
+        auth.setToken("1234");
+        console.log(auth);
         navigate("/dashboard");
     } else {
         alert("Invalid credentials!")
